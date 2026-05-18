@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRV Studio — Plan de Implementación</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0A0F; --card: #12121A; --surface: #1A1A28;
+    --purple: #7C3AED; --cyan: #06B6D4; --gold: #F59E0B;
+    --text: #F1F5F9; --muted: #94A3B8; --border: #2D2D44;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.7; }
+
+  /* COVER PAGE */
+  .cover {
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; text-align: center;
+    background: linear-gradient(135deg, #0A0A0F 0%, #0f0a2e 50%, #0A0A0F 100%);
+    position: relative; overflow: hidden; page-break-after: always;
+  }
+  .cover::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 40px 40px; opacity: 0.3;
+  }
+  .cover-badge {
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    color: #fff; padding: 6px 20px; border-radius: 99px;
+    font-size: 12px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 24px; position: relative;
+  }
+  .cover h1 {
+    font-family: 'Orbitron', sans-serif; font-size: 52px; font-weight: 900;
+    background: linear-gradient(135deg, #fff 30%, var(--cyan));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    line-height: 1.1; margin-bottom: 16px; position: relative;
+  }
+  .cover .subtitle {
+    color: var(--muted); font-size: 16px; max-width: 500px;
+    margin: 0 auto 40px; position: relative;
+  }
+  .cover-meta {
+    display: flex; gap: 32px; position: relative;
+    color: var(--muted); font-size: 13px;
+  }
+  .cover-meta span { display: flex; align-items: center; gap: 6px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); display: inline-block; }
+  .dot.gold { background: var(--gold); }
+  .dot.purple { background: var(--purple); }
+
+  /* CONTENT */
+  .content { max-width: 860px; margin: 0 auto; padding: 48px 40px; }
+
+  h2 {
+    font-family: 'Orbitron', sans-serif; font-size: 22px; font-weight: 700;
+    color: var(--cyan); margin: 48px 0 20px; padding-bottom: 10px;
+    border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px;
+  }
+  h2::before { content: '//'; color: var(--purple); font-size: 16px; }
+  h3 { font-size: 15px; font-weight: 600; color: var(--gold); margin: 28px 0 10px; }
+
+  p { color: var(--muted); margin-bottom: 12px; }
+  strong { color: var(--text); }
+  a { color: var(--cyan); text-decoration: none; }
+
+  /* TABLES */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; }
+  th {
+    background: var(--surface); color: var(--text); font-weight: 600;
+    padding: 10px 14px; text-align: left; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 1px; border: 1px solid var(--border);
+  }
+  td { padding: 9px 14px; border: 1px solid var(--border); color: var(--muted); }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+  code {
+    background: var(--surface); color: var(--cyan); padding: 2px 7px;
+    border-radius: 4px; font-size: 12px; font-family: 'Courier New', monospace;
+  }
+
+  /* ALERTS */
+  .alert {
+    border-left: 3px solid; border-radius: 6px;
+    padding: 14px 18px; margin: 20px 0; font-size: 13px;
+  }
+  .alert.important { border-color: var(--gold); background: rgba(245,158,11,0.07); color: #fcd34d; }
+  .alert.tip { border-color: var(--cyan); background: rgba(6,182,212,0.07); color: #67e8f9; }
+  .alert-title { font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; margin-bottom: 6px; }
+
+  /* CODE BLOCK */
+  pre {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 20px; overflow-x: auto; font-family: 'Courier New', monospace;
+    font-size: 12px; color: #a5b4fc; line-height: 1.8; margin: 16px 0;
+  }
+
+  /* BULLETS */
+  ul, ol { padding-left: 20px; color: var(--muted); margin-bottom: 12px; }
+  li { margin-bottom: 6px; }
+
+  /* CHECKLIST */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    padding: 8px 12px; margin: 4px 0; border-radius: 6px;
+    background: var(--card); border: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px; color: var(--muted);
+  }
+  .checklist li .num {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple), var(--cyan));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0;
+  }
+  .check-box {
+    width: 18px; height: 18px; border: 2px solid var(--border);
+    border-radius: 4px; flex-shrink: 0;
+  }
+
+  /* COLOR SWATCHES */
+  .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 2px; vertical-align: middle; margin-right: 4px; }
+
+  /* SECTION CARDS */
+  .section-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+  .sec-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 18px; position: relative; overflow: hidden;
+  }
+  .sec-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+  }
+  .sec-card h4 { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .sec-card p { font-size: 12px; margin: 0; }
+
+  /* PRODUCTS TABLE */
+  .product-badge {
+    display: inline-block; padding: 2px 10px; border-radius: 99px;
+    font-size: 11px; font-weight: 700;
+  }
+  .badge-70 { background: rgba(239,68,68,0.15); color: #f87171; }
+  .badge-50 { background: rgba(245,158,11,0.15); color: #fbbf24; }
+  .badge-30 { background: rgba(6,182,212,0.15); color: #22d3ee; }
+
+  /* DEPLOY STEPS */
+  .deploy-steps { counter-reset: step; list-style: none; padding: 0; }
+  .deploy-steps li {
+    counter-increment: step; display: flex; align-items: flex-start;
+    gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border); color: var(--muted);
+  }
+  .deploy-steps li::before {
+    content: counter(step); min-width: 28px; height: 28px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: var(--cyan); flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* QUESTIONS */
+  .q-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px 18px; margin: 10px 0; display: flex; gap: 14px; align-items: flex-start;
+  }
+  .q-num {
+    width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--purple), var(--cyan));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: #fff;
+  }
+  .q-text { font-size: 13px; color: var(--muted); }
+  .q-text strong { color: var(--text); }
+
+  /* FOOTER */
+  .doc-footer {
+    border-top: 1px solid var(--border); padding: 32px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--muted); font-size: 12px; max-width: 860px; margin: 0 auto;
+  }
+  .doc-footer .brand { font-family: 'Orbitron', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); }
+
+  /* PRINT — Tema claro para PDF legible */
+  @media print {
+    /* Redefinir toda la paleta a colores oscuros sobre fondo blanco */
+    :root {
+      --bg: #ffffff;
+      --card: #f4f6f9;
+      --surface: #e8edf5;
+      --purple: #5b21b6;
+      --cyan: #0369a1;
+      --gold: #b45309;
+      --text: #0f172a;
+      --muted: #374151;
+      --border: #cbd5e1;
+    }
+
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+    body { background: #fff !important; color: #0f172a !important; }
+
+    /* La portada mantiene fondo oscuro con texto visible */
+    .cover {
+      background: linear-gradient(135deg, #1e1b4b 0%, #1e3a5f 50%, #1e1b4b 100%) !important;
+      page-break-after: always;
+      min-height: auto !important;
+      padding: 80px 40px !important;
+    }
+    .cover h1 { -webkit-text-fill-color: #ffffff !important; color: #ffffff !important; }
+    .cover .subtitle { color: #c7d2fe !important; }
+    .cover-meta { color: #a5b4fc !important; }
+
+    /* Texto general */
+    p { color: #374151 !important; }
+    strong { color: #0f172a !important; }
+    li { color: #374151 !important; }
+    a { color: #1d4ed8 !important; }
+
+    /* Headings */
+    h2 { color: #1d4ed8 !important; border-bottom-color: #cbd5e1 !important; page-break-before: auto; }
+    h2::before { color: #7c3aed !important; }
+    h3 { color: #92400e !important; }
+
+    /* Tablas */
+    th { background: #e8edf5 !important; color: #0f172a !important; border-color: #cbd5e1 !important; }
+    td { color: #374151 !important; border-color: #cbd5e1 !important; }
+    tr:nth-child(even) td { background: #f8fafc !important; }
+
+    /* Code */
+    code { background: #f1f5f9 !important; color: #1d4ed8 !important; }
+    pre { background: #1e293b !important; color: #a5b4fc !important; border-color: #334155 !important; }
+
+    /* Alerts */
+    .alert.important { background: #fef9c3 !important; color: #713f12 !important; border-color: #b45309 !important; }
+    .alert.tip { background: #e0f2fe !important; color: #0c4a6e !important; border-color: #0369a1 !important; }
+
+    /* Cards de secciones */
+    .sec-card { background: #f4f6f9 !important; border-color: #cbd5e1 !important; }
+    .sec-card h4 { color: #0f172a !important; }
+    .sec-card p { color: #374151 !important; }
+
+    /* Checklist */
+    .checklist li { background: #f4f6f9 !important; border-color: #cbd5e1 !important; color: #374151 !important; }
+    .check-box { border-color: #94a3b8 !important; }
+
+    /* Deploy steps */
+    .deploy-steps li { color: #374151 !important; border-bottom-color: #e2e8f0 !important; }
+    .deploy-steps li::before { background: #e8edf5 !important; border-color: #cbd5e1 !important; color: #1d4ed8 !important; }
+
+    /* Q-cards */
+    .q-card { background: #f4f6f9 !important; border-color: #cbd5e1 !important; }
+    .q-text { color: #374151 !important; }
+    .q-text strong { color: #0f172a !important; }
+
+    /* Badges de descuento */
+    .badge-70 { background: #fee2e2 !important; color: #b91c1c !important; }
+    .badge-50 { background: #fef3c7 !important; color: #92400e !important; }
+    .badge-30 { background: #cffafe !important; color: #0e7490 !important; }
+
+    /* Footer del doc */
+    .doc-footer { border-top-color: #e2e8f0 !important; color: #374151 !important; }
+    .doc-footer .brand { color: #0f172a !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== COVER ===== -->
+<div class="cover">
+  <div class="cover-badge">🎮 Documento Técnico · 2025</div>
+  <h1>TRV Studio</h1>
+  <p class="subtitle">Plan de Implementación Completo para la Landing Page de Portafolio</p>
+  <div class="cover-meta">
+    <span><span class="dot purple"></span> React + Tailwind CSS</span>
+    <span><span class="dot"></span> Vite + Vercel</span>
+    <span><span class="dot gold"></span> Dark Mode</span>
+  </div>
+</div>
+
+<!-- ===== CONTENT ===== -->
+<div class="content">
+
+  <!-- DESCRIPCIÓN -->
+  <h2>Descripción General</h2>
+  <p>
+    Crear una <strong>Landing Page tipo portafolio estática</strong> para <strong>TRV Studio</strong>,
+    la marca de assets de videojuegos de Jasb-DV en Fab.com. El objetivo es presentar los productos
+    de forma visualmente impactante, atraer compradores y redirigirlos directamente a las fichas de Fab,
+    <strong>sin ningún backend ni lógica de servidor</strong>.
+  </p>
+
+  <!-- STACK -->
+  <h2>Stack Tecnológico</h2>
+  <table>
+    <thead><tr><th>Herramienta</th><th>Rol</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Vite + React</strong></td><td>Framework de componentes (JSX)</td></tr>
+      <tr><td><strong>Tailwind CSS</strong></td><td>Estilos utilitarios, dark mode nativo</td></tr>
+      <tr><td><strong>Vercel</strong></td><td>Deploy estático sin configuración extra</td></tr>
+      <tr><td><strong>Sin backend</strong></td><td>Cero APIs, cero bases de datos</td></tr>
+    </tbody>
+  </table>
+  <div class="alert important">
+    <div class="alert-title">⚠ Importante</div>
+    Se usará <strong>Vite</strong> como bundler (no Create React App, que está obsoleto).
+    El output es 100% estático y compatible con Vercel de forma nativa.
+  </div>
+
+  <!-- DISEÑO -->
+  <h2>Decisiones de Diseño</h2>
+  <h3>Paleta de Colores — Dark Mode Exclusivo</h3>
+  <table>
+    <thead><tr><th>Token</th><th>Color</th><th>Uso</th></tr></thead>
+    <tbody>
+      <tr><td><code>bg-primary</code></td><td><span class="swatch" style="background:#0A0A0F;border:1px solid #444"></span><code>#0A0A0F</code></td><td>Fondo principal (negro azulado)</td></tr>
+      <tr><td><code>bg-card</code></td><td><span class="swatch" style="background:#12121A;border:1px solid #444"></span><code>#12121A</code></td><td>Fondo de tarjetas</td></tr>
+      <tr><td><code>bg-surface</code></td><td><span class="swatch" style="background:#1A1A28;border:1px solid #444"></span><code>#1A1A28</code></td><td>Superficies elevadas / nav</td></tr>
+      <tr><td><code>accent-purple</code></td><td><span class="swatch" style="background:#7C3AED"></span><code>#7C3AED</code></td><td>Acento principal (violeta)</td></tr>
+      <tr><td><code>accent-cyan</code></td><td><span class="swatch" style="background:#06B6D4"></span><code>#06B6D4</code></td><td>Acento secundario (cyan neón)</td></tr>
+      <tr><td><code>accent-gold</code></td><td><span class="swatch" style="background:#F59E0B"></span><code>#F59E0B</code></td><td>Precios, descuentos, badges</td></tr>
+      <tr><td><code>text-primary</code></td><td><span class="swatch" style="background:#F1F5F9"></span><code>#F1F5F9</code></td><td>Texto principal</td></tr>
+      <tr><td><code>text-muted</code></td><td><span class="swatch" style="background:#94A3B8"></span><code>#94A3B8</code></td><td>Texto secundario</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Tipografía</h3>
+  <ul>
+    <li><strong>Headings:</strong> <code>Orbitron</code> — futurista, ideal para gaming</li>
+    <li><strong>Body:</strong> <code>Inter</code> — limpia y legible</li>
+  </ul>
+
+  <h3>Efectos Visuales</h3>
+  <ul>
+    <li>Glassmorphism en tarjetas (backdrop-blur + border semitransparente)</li>
+    <li>Gradientes animados en el Hero</li>
+    <li>Hover effects con glow en las tarjetas de oferta</li>
+    <li>Grid animado como background del Hero</li>
+    <li>Badge de descuento con animación de pulso</li>
+  </ul>
+
+  <!-- ESTRUCTURA -->
+  <h2>Estructura de Carpetas</h2>
+  <pre>TRV_STUDIO_Landing_Page/
+├── public/
+│   ├── favicon.ico
+│   └── og-image.png         ← imagen para compartir en redes
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── HeroSection.jsx
+│   │   ├── FeaturedOffers.jsx
+│   │   ├── OfferCard.jsx
+│   │   ├── CatalogSection.jsx
+│   │   ├── CatalogCard.jsx
+│   │   └── Footer.jsx
+│   ├── data/
+│   │   └── products.js      ← datos de productos (links, títulos)
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+├── index.html
+├── tailwind.config.js
+├── vite.config.js
+└── package.json</pre>
+
+  <!-- SECCIONES -->
+  <h2>Secciones de la Página</h2>
+  <div class="section-cards">
+    <div class="sec-card">
+      <h4>① Navbar.jsx</h4>
+      <p>Logo TRV Studio · Links: Inicio / Ofertas / Portafolio / Contacto · Sticky con blur · Botón CTA a Fab</p>
+    </div>
+    <div class="sec-card">
+      <h4>② HeroSection.jsx ⚡</h4>
+      <p>Banner "Rebajas de Junio — Hasta 70% OFF" · Gradiente animado · Fondo grid · Dos botones CTA</p>
+    </div>
+    <div class="sec-card">
+      <h4>③ FeaturedOffers.jsx ⭐</h4>
+      <p>3 cards grandes · Espacio video/GIF · Badge de descuento con pulso · Botón COMPRAR EN FAB</p>
+    </div>
+    <div class="sec-card">
+      <h4>④ CatalogSection.jsx 📦</h4>
+      <p>Grid responsive 1→2→4 col · Terrain Nature Mat Pack + más · Placeholder gradient + botón Ver en Fab</p>
+    </div>
+    <div class="sec-card">
+      <h4>⑤ Footer.jsx</h4>
+      <p>Logo · Links nav · Íconos sociales SVG · Link al perfil Fab · Copyright © 2025 TRV Studio</p>
+    </div>
+    <div class="sec-card">
+      <h4>📄 products.js (Data)</h4>
+      <p>Centraliza URLs, títulos, descuentos y media de todos los productos. Fácil de actualizar.</p>
+    </div>
+  </div>
+
+  <!-- PRODUCTOS EN OFERTA -->
+  <h2>Productos en Oferta Destacada</h2>
+  <table>
+    <thead><tr><th>Producto</th><th>Descuento</th><th>Enlace Fab</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Ultimate 3D Platformer &amp; Menu System Template</strong></td>
+        <td><span class="product-badge badge-70">70% OFF</span></td>
+        <td><a href="https://www.fab.com/listings/2fbff310-ad58-4962-81ca-c940214f6f24">fab.com/listings/2fbff310</a></td>
+      </tr>
+      <tr>
+        <td><strong>Irregular Stone Mat Pack</strong></td>
+        <td><span class="product-badge badge-50">50% OFF</span></td>
+        <td><a href="https://www.fab.com/listings/194db607-0256-4db2-9b12-44460367d846">fab.com/listings/194db607</a></td>
+      </tr>
+      <tr>
+        <td><strong>Ice and Lava</strong></td>
+        <td><span class="product-badge badge-30">30% OFF</span></td>
+        <td><a href="https://www.fab.com/listings/5fc9dbb4-0c3c-4115-8fa5-8d074725f3b6">fab.com/listings/5fc9dbb4</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- PRODUCTS DATA -->
+  <h2>Archivo de Datos products.js</h2>
+  <p>Centralizamos toda la info de productos para facilitar actualizaciones sin tocar componentes:</p>
+  <pre>export const featuredOffers = [
+  {
+    id: 1,
+    title: "Ultimate 3D Platformer &amp; Menu System Template",
+    category: "Blueprint / Template",
+    discount: 70,
+    fabUrl: "https://www.fab.com/listings/2fbff310-ad58-4962-81ca-c940214f6f24",
+    mediaType: "image",  // cambiar a "video" cuando tengas el archivo
+    mediaSrc: null,
+    description: "Sistema completo de plataformas 3D con menús profesionales."
+  },
+  // ... más productos
+]</pre>
+
+  <!-- DEPLOY -->
+  <h2>Plan de Deploy en Vercel</h2>
+  <ol class="deploy-steps">
+    <li>Subir el proyecto a un repositorio de <strong>GitHub</strong></li>
+    <li>Conectar el repo en <strong>vercel.com</strong> (importar proyecto)</li>
+    <li>Vercel detecta Vite automáticamente — sin configuración extra</li>
+    <li><strong>Sin variables de entorno necesarias</strong> (100% estático)</li>
+    <li>Deploy automático en URL tipo <code>trv-studio.vercel.app</code></li>
+  </ol>
+  <div class="alert tip">
+    <div class="alert-title">💡 Tip</div>
+    Para un dominio personalizado como <code>trvstudio.com</code>, solo hay que añadirlo en el panel de Vercel después del primer deploy. Es gratuito conectar un dominio propio.
+  </div>
+
+  <!-- PREGUNTAS -->
+  <h2>Preguntas Abiertas</h2>
+  <div class="alert important">
+    <div class="alert-title">⚠ Importante — Responder antes de codificar</div>
+    Las siguientes decisiones pueden afectar el diseño final. Si no se especifican, se usarán valores por defecto.
+  </div>
+  <div class="q-card"><div class="q-num">1</div><div class="q-text"><strong>Videos/GIFs:</strong> ¿Tienes archivos multimedia de tus productos? Si no, ¿usamos placeholders con gradientes generados?</div></div>
+  <div class="q-card"><div class="q-num">2</div><div class="q-text"><strong>Logo:</strong> ¿Tienes un logo de TRV Studio? Si no, diseñamos uno tipográfico con CSS puro.</div></div>
+  <div class="q-card"><div class="q-num">3</div><div class="q-text"><strong>Redes Sociales:</strong> ¿Qué redes quieres en el footer? (Twitter/X, ArtStation, YouTube, Discord, etc.)</div></div>
+  <div class="q-card"><div class="q-num">4</div><div class="q-text"><strong>Catálogo:</strong> ¿Cuántos productos adicionales además del Terrain Nature Mat Pack?</div></div>
+  <div class="q-card"><div class="q-num">5</div><div class="q-text"><strong>Dominio:</strong> ¿Ya tienes un dominio propio, o usamos el subdominio gratuito de Vercel?</div></div>
+
+  <!-- CHECKLIST -->
+  <h2>Orden de Ejecución</h2>
+  <ul class="checklist">
+    <li><div class="check-box"></div><div class="num">1</div> Inicializar proyecto con Vite + React + Tailwind CSS</li>
+    <li><div class="check-box"></div><div class="num">2</div> Configurar <code>tailwind.config.js</code> con paleta custom y fuentes</li>
+    <li><div class="check-box"></div><div class="num">3</div> Crear <code>index.css</code> con estilos base y animaciones custom</li>
+    <li><div class="check-box"></div><div class="num">4</div> Crear <code>products.js</code> con datos de todos los productos</li>
+    <li><div class="check-box"></div><div class="num">5</div> Construir componente <code>Navbar.jsx</code></li>
+    <li><div class="check-box"></div><div class="num">6</div> Construir componente <code>HeroSection.jsx</code> con animaciones</li>
+    <li><div class="check-box"></div><div class="num">7</div> Construir <code>OfferCard.jsx</code> + <code>FeaturedOffers.jsx</code></li>
+    <li><div class="check-box"></div><div class="num">8</div> Construir <code>CatalogCard.jsx</code> + <code>CatalogSection.jsx</code></li>
+    <li><div class="check-box"></div><div class="num">9</div> Construir <code>Footer.jsx</code></li>
+    <li><div class="check-box"></div><div class="num">10</div> Ensamblar todo en <code>App.jsx</code></li>
+    <li><div class="check-box"></div><div class="num">11</div> Verificar en navegador + responsividad</li>
+    <li><div class="check-box"></div><div class="num">12</div> Preparar y hacer deploy en Vercel</li>
+  </ul>
+
+</div>
+
+<!-- DOC FOOTER -->
+<div class="doc-footer">
+  <span class="brand">TRV Studio</span>
+  <span>Plan de Implementación · Landing Page 2025</span>
+  <span>fab.com/sellers/Jasb-DV</span>
+</div>
+
+</body>
+</html>
