@@ -3,4 +3,19 @@
 @theme {
     --font-orbitron: 'Orbitron', sans-serif;
     --font-inter: 'Inter', sans-serif;
+    
+    --color-primary: #0A0A0F;
+    --color-card: #12121A;
+    --color-surface: #1A1A28;
+    --color-accent-purple: #7C3AED;
+    --color-accent-cyan: #06B6D4;
+    --color-accent-gold: #F59E0B;
+    --color-text-primary: #F1F5F9;
+    --color-text-muted: #94A3B8;
+}
+
+body {
+    background-color: var(--color-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-inter);
 }
