@@ -4,18 +4,39 @@
     --font-orbitron: 'Orbitron', sans-serif;
     --font-inter: 'Inter', sans-serif;
     
-    --color-primary: #0A0A0F;
-    --color-card: #12121A;
-    --color-surface: #1A1A28;
+    --color-primary: var(--bg-primary);
+    --color-card: var(--bg-card);
+    --color-surface: var(--bg-surface);
+    --color-text-primary: var(--text-main);
+    --color-text-muted: var(--text-muted);
+    
+    /* Accents stay the same across modes to keep the brand identity */
     --color-accent-purple: #7C3AED;
     --color-accent-cyan: #06B6D4;
     --color-accent-gold: #F59E0B;
-    --color-text-primary: #F1F5F9;
-    --color-text-muted: #94A3B8;
+}
+
+:root {
+    /* Dark Mode (Default) */
+    --bg-primary: #0A0A0F;
+    --bg-card: #12121A;
+    --bg-surface: #1A1A28;
+    --text-main: #F1F5F9;
+    --text-muted: #94A3B8;
+}
+
+.light {
+    /* Light Mode */
+    --bg-primary: #F8FAFC;
+    --bg-card: #FFFFFF;
+    --bg-surface: #E2E8F0;
+    --text-main: #0F172A;
+    --text-muted: #475569;
 }
 
 body {
-    background-color: var(--color-primary);
-    color: var(--color-text-primary);
+    background-color: var(--bg-primary);
+    color: var(--text-main);
     font-family: var(--font-inter);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }

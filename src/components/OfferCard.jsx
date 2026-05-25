@@ -8,7 +8,7 @@ export default function OfferCard({ product }) {
         'bg-accent-cyan/20 text-accent-cyan border-accent-cyan/50';
 
   return (
-    <div className="group relative bg-card border border-white/5 rounded-2xl overflow-hidden hover:border-accent-cyan/50 transition-all duration-500 shadow-lg hover:shadow-[0_0_30px_rgba(6,182,212,0.2)] flex flex-col h-full">
+    <div className="group relative bg-card border border-text-muted/10 rounded-2xl overflow-hidden hover:border-accent-cyan/50 transition-all duration-500 shadow-lg hover:shadow-[0_0_30px_rgba(6,182,212,0.2)] flex flex-col h-full">
 
       {/* Media Container (16:9) */}
       <div className="relative aspect-video w-full bg-surface overflow-hidden">
@@ -17,11 +17,11 @@ export default function OfferCard({ product }) {
         ) : (
           <>
             {/* Placeholder Gradient since we don't have mediaSrc yet */}
-            <div className="absolute inset-0 bg-gradient-to-br from-surface to-[#0A0A0F]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-surface to-primary" />
             
             {/* Animated abstract placeholder lines to make it look premium */}
-            <div className="absolute inset-0 opacity-20"
-                 style={{ backgroundImage: 'linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.1) 50%, transparent 52%)', backgroundSize: '20px 20px' }}>
+            <div className="absolute inset-0 opacity-10"
+                 style={{ backgroundImage: 'linear-gradient(45deg, transparent 48%, rgba(128,128,128,0.2) 50%, transparent 52%)', backgroundSize: '20px 20px' }}>
             </div>
 
             <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
@@ -54,7 +54,7 @@ export default function OfferCard({ product }) {
           href={product.fabUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-auto w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-surface border border-white/10 text-white font-semibold hover:bg-accent-cyan hover:border-accent-cyan hover:text-primary transition-all duration-300"
+          className="mt-auto w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-surface border border-text-muted/20 text-text-primary font-semibold hover:bg-accent-cyan hover:border-accent-cyan hover:text-white transition-all duration-300"
         >
           COMPRAR EN FAB
           <ExternalLink size={16} />

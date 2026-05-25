@@ -5,15 +5,15 @@ export default function HeroSection() {
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
       {/* Animated Background Gradients */}
       <div className="absolute inset-0 bg-primary z-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-purple/20 rounded-full blur-[120px] mix-blend-screen animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-cyan/10 rounded-full blur-[120px] mix-blend-screen animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-270 h-96 bg-accent-purple/20 rounded-full blur-[120px] mix-blend-screen animate-pulse" />
+        <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-accent-cyan/10 rounded-full blur-[120px] mix-blend-screen animate-pulse" style={{ animationDelay: '2s' }} />
       </div>
 
       {/* Grid Pattern Overlay */}
       <div
-        className="absolute inset-0 z-0 opacity-20"
+        className="absolute inset-0 z-0 opacity-20 dark:opacity-30"
         style={{
-          backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(rgba(128, 128, 128, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(128, 128, 128, 0.2) 1px, transparent 1px)',
           backgroundSize: '40px 40px',
         }}
       />
@@ -27,7 +27,7 @@ export default function HeroSection() {
         </div>
 
         {/* Main Title */}
-        <h1 className="font-orbitron text-5xl md:text-7xl font-black mb-6 leading-tight tracking-tight text-white drop-shadow-lg">
+        <h1 className="font-orbitron text-5xl md:text-7xl font-black mb-6 leading-tight tracking-tight text-text-primary drop-shadow-lg">
           ELEVA TUS PROYECTOS <br className="hidden md:block" />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan to-accent-purple drop-shadow-[0_0_15px_rgba(6,182,212,0.5)]">
             CON ASSETS PREMIUM
@@ -53,7 +53,7 @@ export default function HeroSection() {
             href="https://www.fab.com/sellers/Jasb-DV"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/20 bg-surface/50 backdrop-blur text-white font-bold text-lg hover:bg-white/10 transition-colors duration-300"
+            className="flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-text-muted/30 bg-surface/50 backdrop-blur text-text-primary font-bold text-lg hover:bg-text-muted/10 transition-colors duration-300"
           >
             Explorar Tienda
             <ArrowRight size={20} />

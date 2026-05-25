@@ -2,9 +2,9 @@ import { ExternalLink } from 'lucide-react';
 
 export default function ProductCard({ product }) {
   return (
-    <div className="group relative bg-surface border border-white/5 rounded-2xl overflow-hidden hover:border-accent-purple/50 transition-all duration-300 flex flex-col h-full shadow-lg hover:shadow-[0_0_20px_rgba(124,58,237,0.15)]">
+    <div className="group relative bg-surface border border-text-muted/10 rounded-2xl overflow-hidden hover:border-accent-purple/50 transition-all duration-300 flex flex-col h-full shadow-lg hover:shadow-[0_0_20px_rgba(124,58,237,0.15)]">
       {/* Media Container (16:9) */}
-      <div className="relative aspect-video w-full bg-[#0A0A0F] overflow-hidden">
+      <div className="relative aspect-video w-full bg-primary overflow-hidden">
         {product.mediaSrc ? (
           <img src={product.mediaSrc} alt={product.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
         ) : (
@@ -31,7 +31,7 @@ export default function ProductCard({ product }) {
           href={product.fabUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-auto inline-flex items-center gap-2 text-accent-cyan text-sm font-semibold hover:text-white transition-colors"
+          className="mt-auto inline-flex items-center gap-2 text-accent-cyan text-sm font-semibold hover:text-text-primary transition-colors"
         >
           Ver detalles
           <ExternalLink size={14} />

@@ -11,7 +11,7 @@ export default function FeaturedOffers() {
         
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="font-orbitron text-3xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="font-orbitron text-3xl md:text-5xl font-bold text-text-primary mb-4">
             OFERTAS <span className="text-accent-gold">DESTACADAS</span>
           </h2>
           <p className="text-text-muted text-lg max-w-2xl mx-auto">
