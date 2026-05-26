@@ -23,7 +23,7 @@ import imgIgneousStone from '../assets/Products_Images/Portada_Igneous_Stone.jpg
 import imgJeanBlue from '../assets/Products_Images/Portada_Jean_Blue.jpg';
 import imgLava from '../assets/Products_Images/Portada_Lava.jpg';
 import imgLightConcrPlastSnow from '../assets/Products_Images/Portada_Light_Concret_Plaster_and_Snow.jpg';
-import imgRoughBrick from '../assets/Products_Images/Portada_Rough_Brick.jpg';
+import imgRoughBrick from '../assets/Products_Images/Portada_Rough_brick.jpg';
 import imgRusticWood from '../assets/Products_Images/Portada_Rustic_Wood.jpg';
 import imgStoneVoronoiBrown from '../assets/Products_Images/Portada_Stone_Voronoi_Brown.jpg';
 import imgWoodPlanks from '../assets/Products_Images/Portada_Wood_Planks.jpg';
