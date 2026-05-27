@@ -13,7 +13,7 @@ export default function Contact() {
     const formData = new FormData(e.target);
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/joelasb99@gmail.com", {
+      const response = await fetch("https://formsubmit.co/ajax/soporte.trvstudio@gmail.com", {
         method: "POST",
         body: formData
       });
@@ -48,11 +48,11 @@ export default function Contact() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
-          
+
           {/* Contact Info */}
           <div className="flex flex-col justify-center">
             <h3 className="font-orbitron text-2xl font-semibold text-text-primary mb-8">Información de Contacto</h3>
-            
+
             <div className="space-y-6 mb-12">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-surface flex items-center justify-center border border-text-muted/20 text-accent-cyan shrink-0">
@@ -60,10 +60,10 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="text-text-primary font-medium mb-1">Email</h4>
-                  <p className="text-text-muted">soporte@trvstudio.com</p>
+                  <p className="text-text-muted">soporte.trvstudio@gmail.com</p>
                 </div>
               </div>
-              
+
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-surface flex items-center justify-center border border-text-muted/20 text-accent-purple shrink-0">
                   <MessageSquare size={24} />
@@ -93,7 +93,7 @@ export default function Contact() {
               <p className="text-text-muted text-sm mb-4">
                 Descubre todos nuestros productos y licencias directamente en nuestra tienda de Fab.
               </p>
-              <a 
+              <a
                 href="https://www.fab.com/sellers/Jasb-DV"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -108,9 +108,9 @@ export default function Contact() {
           <div className="bg-surface rounded-3xl p-8 md:p-10 border border-white/5 shadow-2xl relative overflow-hidden group">
             {/* Form Glow Effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-accent-purple/5 via-transparent to-accent-cyan/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            
+
             <h3 className="font-orbitron text-2xl font-semibold text-text-primary mb-8 relative z-10">Envíanos un Mensaje</h3>
-            
+
             <form className="space-y-6 relative z-10" onSubmit={handleSubmit}>
               {/* FormSubmit Configuration */}
               <input type="hidden" name="_captcha" value="false" />
@@ -119,9 +119,9 @@ export default function Contact() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium text-text-muted">Nombre</label>
-                  <input 
-                    type="text" 
-                    id="name" 
+                  <input
+                    type="text"
+                    id="name"
                     name="name"
                     required
                     className="w-full bg-primary/50 border border-text-muted/20 rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan transition-all"
@@ -130,9 +130,9 @@ export default function Contact() {
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-medium text-text-muted">Email</label>
-                  <input 
-                    type="email" 
-                    id="email" 
+                  <input
+                    type="email"
+                    id="email"
                     name="email"
                     required
                     className="w-full bg-primary/50 border border-text-muted/20 rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan transition-all"
@@ -140,12 +140,12 @@ export default function Contact() {
                   />
                 </div>
               </div>
-              
+
               <div className="space-y-2">
                 <label htmlFor="subject" className="text-sm font-medium text-text-muted">Asunto</label>
-                <input 
-                  type="text" 
-                  id="subject" 
+                <input
+                  type="text"
+                  id="subject"
                   name="_subject"
                   required
                   className="w-full bg-primary/50 border border-text-muted/20 rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent-purple focus:ring-1 focus:ring-accent-purple transition-all"
@@ -155,8 +155,8 @@ export default function Contact() {
 
               <div className="space-y-2">
                 <label htmlFor="message" className="text-sm font-medium text-text-muted">Mensaje</label>
-                <textarea 
-                  id="message" 
+                <textarea
+                  id="message"
                   name="message"
                   required
                   rows={5}
@@ -179,7 +179,7 @@ export default function Contact() {
                 </div>
               )}
 
-              <button 
+              <button
                 type="submit"
                 disabled={isSubmitting}
                 className="w-full py-4 rounded-xl bg-gradient-to-r from-accent-purple to-accent-cyan text-white font-bold text-lg hover:shadow-[0_0_20px_rgba(124,58,237,0.4)] transition-all flex items-center justify-center gap-2 group/btn disabled:opacity-70 disabled:cursor-not-allowed"
@@ -189,7 +189,7 @@ export default function Contact() {
               </button>
             </form>
           </div>
-          
+
         </div>
       </div>
     </div>
