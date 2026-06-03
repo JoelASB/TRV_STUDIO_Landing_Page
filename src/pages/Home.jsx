@@ -2,6 +2,7 @@
 import HeroSection from "../components/HeroSection";
 import FeaturedOffers from "../components/FeaturedOffers";
 import CatalogSection from "../components/CatalogSection";
+import { Analytics } from "@vercel/analytics/next";
 
 // Este componente agrupa varias secciones en una sola página (la página principal).
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <FeaturedOffers />
       {/* Sección que muestra algunos productos del catálogo general */}
       <CatalogSection />
+      <Analytics />
     </>
   );
 }
