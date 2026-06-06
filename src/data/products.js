@@ -40,14 +40,18 @@ const categoryIcons = {
 
 // 'featuredOffers' es un arreglo de objetos. Lo exportamos para poder importarlo en otros archivos (como Offers.jsx).
 // Aquí almacenamos toda la información de los productos en oferta.
-export const featuredOffers = [
+export const featuredOffers = [];
+
+// Placeholder data for the general catalog
+// Catálogo principal de productos (Portafolio)
+// Hemos agregado los 24 enlaces a la tienda Fab que proporcionaste.
+// Nota: Puedes cambiar los títulos, descripciones y añadir imágenes (mediaSrc) más adelante.
+export const catalogProducts = [
     {
         id: 1,
         title: "Ultimate 3D Platformer & Menu System Template",
         category: categoryIcons.Blueprints,
-        discount: 70,
         fabUrl: "https://www.fab.com/listings/2fbff310-ad58-4962-81ca-c940214f6f24",
-        mediaType: "image",
         mediaSrc: imgUltimate,
         description: "Sistema completo de plataformas 3D con menús profesionales."
     },
@@ -55,9 +59,7 @@ export const featuredOffers = [
         id: 2,
         title: "Irregular Stone Mat Pack",
         category: categoryIcons.Materials,
-        discount: 50,
         fabUrl: "https://www.fab.com/listings/194db607-0256-4db2-9b12-44460367d846",
-        mediaType: "image",
         mediaSrc: imgStone,
         description: "Pack de texturas de piedra irregular para entornos 3D."
     },
@@ -65,19 +67,10 @@ export const featuredOffers = [
         id: 3,
         title: "Ice and Lava",
         category: categoryIcons.Materials,
-        discount: 30,
         fabUrl: "https://www.fab.com/listings/5fc9dbb4-0c3c-4115-8fa5-8d074725f3b6",
-        mediaType: "image",
         mediaSrc: imgIceLava,
         description: "Assets de hielo y lava para tus proyectos."
-    }
-];
-
-// Placeholder data for the general catalog
-// Catálogo principal de productos (Portafolio)
-// Hemos agregado los 24 enlaces a la tienda Fab que proporcionaste.
-// Nota: Puedes cambiar los títulos, descripciones y añadir imágenes (mediaSrc) más adelante.
-export const catalogProducts = [
+    },
     {
         id: 101,
         title: "Dry Patchy Grass Ground",

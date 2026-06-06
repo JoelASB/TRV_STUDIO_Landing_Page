@@ -24,16 +24,19 @@ export default function Offers() {
           </p>
         </div>
 
-        {/* Cuadrícula responsiva para las tarjetas. 
-            Muestra 1 columna en celulares, 2 en tablets (md:) y 3 en pantallas grandes (lg:). */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          
-          {/* Iteramos sobre el arreglo 'featuredOffers' usando .map() para generar dinámicamente un componente 'OfferCard' por producto. */}
-          {featuredOffers.map(product => (
-            // La propiedad 'key' es necesaria en React cuando generamos elementos en una lista para mantener el rendimiento.
-            <OfferCard key={product.id} product={product} />
-          ))}
-        </div>
+        {/* Cuadrícula responsiva o mensaje de no ofertas */}
+        {featuredOffers.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredOffers.map(product => (
+              <OfferCard key={product.id} product={product} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20 bg-surface/50 rounded-2xl border border-white/5">
+            <h3 className="text-2xl font-orbitron text-text-muted mb-2">No hay ofertas disponibles por el momento</h3>
+            <p className="text-text-muted/80">Mantente atento a nuestras próximas promociones y descuentos.</p>
+          </div>
+        )}
       </div>
 
     </div>
